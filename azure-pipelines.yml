@@ -1,0 +1,59 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pr: none
+
+pool:
+  vmImage: 'windows-2019'
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - script: dotnet build --configuration $(buildConfiguration) src/Kikartan.BlazorApp/Kikartan.BlazorApp.csproj
+      displayName: 'Dotnet Build $(buildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Publishing App...'
+      inputs:
+        command: publish
+        publishWebProjects: true
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        zipAfterPublish: false
+        
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publishing Pipeline Artifacts...'
+      inputs:
+        path: $(Build.ArtifactStagingDirectory)/Kikartan.BlazorApp/Kikartan.BlazorApp/dist/
+        artifact: BlazorApp
+- stage: Deploy
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy Web App
+    environment: 'kikartan-prod'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Pipeline Artifacts...'
+            inputs:
+              artifact: BlazorApp
+              targetPath: $(Build.SourcesDirectory)/dist
+          - task: AzureFileCopy@3
+            displayName: 'Publishing Build Artifacts to Azure Storage Account...'
+            inputs:
+              SourcePath: '$(Build.SourcesDirectory)/dist/'
+              azureSubscription: '$(AzureSubscription)'
+              Destination: 'AzureBlob'
+              storage: '$(AzureStorage)'
+              ContainerName: '$web'
