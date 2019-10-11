@@ -2,11 +2,25 @@
 
 <h1>Slider</h1>
 
-<p>Current value: @(currentCount / 10M)</p>
+<p>Current value: @protein() gram per day</p>
 
-<input type="range" min="8" max="30" step="1" @bind-value="@currentCount" @bind-value:event="oninput" />
+<label for="tbw">Target Bodyweight (@(targetBw) kg):</label>
+<br>
+<input type="text" id="tbw" name="tbw" required minlength="2" maxlength="3" size="4" @bind-value="@targetBw" @bind-value:event="onchange" />
+<br>
+<br>
+<label for="ppg">Protein per gram (@(proteinRatio) g):</label>
+<br>
+<input type="range" id="ppg" name="ppg" min="8" max="30" step="1" @bind-value="@proteinRatioDiscrete" @bind-value:event="oninput" />
 
 
 @code {
-    int currentCount = 8;
+    int proteinRatioDiscrete = 8;
+    decimal proteinRatio => (proteinRatioDiscrete / 10M);
+    int targetBw = 75;
+
+    decimal protein()
+    {
+        return proteinRatio * targetBw;
+    }
 }
