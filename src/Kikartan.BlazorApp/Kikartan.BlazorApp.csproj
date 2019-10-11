@@ -12,6 +12,27 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview9.19465.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.0.0-preview9.19465.2" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.0.0-preview9.19465.2" PrivateAssets="all" />
+    <PackageReference Include="Toolbelt.Blazor.I18nText" Version="7.0.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\NutrientFacts.en.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\NutrientFacts.sv.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="I18nText\Labels.en.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="I18nText\Labels.en.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Labels.sv.json" />
   </ItemGroup>
 
 </Project>
