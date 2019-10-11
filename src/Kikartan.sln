@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kikartan.BlazorApp", "Kikartan.BlazorApp\Kikartan.BlazorApp.csproj", "{1CB2F025-B516-403A-8DDF-366A688C424F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kikartan.Domain", "Kikartan.Domain\Kikartan.Domain.csproj", "{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kikartan.Data", "Kikartan.Data\Kikartan.Data.csproj", "{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1CB2F025-B516-403A-8DDF-366A688C424F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CB2F025-B516-403A-8DDF-366A688C424F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CB2F025-B516-403A-8DDF-366A688C424F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

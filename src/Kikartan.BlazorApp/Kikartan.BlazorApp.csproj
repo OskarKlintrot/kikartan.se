@@ -35,4 +35,17 @@
     <Watch Remove="i18ntext\Labels.sv.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Foods.en.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Foods.sv.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kikartan.Data\Kikartan.Data.csproj" />
+    <ProjectReference Include="..\Kikartan.Domain\Kikartan.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
