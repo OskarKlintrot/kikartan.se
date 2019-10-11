@@ -6,7 +6,7 @@
 
 <label for="tbw">Target Bodyweight (@(targetBw) kg):</label>
 <br>
-<input type="text" id="tbw" name="tbw" required minlength="2" maxlength="3" size="4" @bind-value="@targetBw" @bind-value:event="onchange" />
+<input type="text" id="tbw" name="tbw" required minlength="2" maxlength="3" size="4" @bind-value="@targetBw" @bind-value:event="oninput" />
 <br>
 <br>
 <label for="ppg">Protein per gram (@(proteinRatio) g):</label>
