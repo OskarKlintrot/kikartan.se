@@ -4,7 +4,9 @@ namespace Kikartan.Domain.Contracts
 {
     public interface INutrients
     {
-        Guid Guid => Guid.NewGuid();
+        // TODO: Use when https://github.com/mono/mono/issues/15833 is fixed
+        //Guid Guid => Guid.NewGuid();
+        Guid Guid { get; }
         string Name { get; }
         int Energy { get; }
         int Carbohydrate { get; }

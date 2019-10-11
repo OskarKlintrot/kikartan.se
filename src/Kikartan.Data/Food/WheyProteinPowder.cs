@@ -19,6 +19,7 @@ namespace Kikartan.Data.Food
             Vegan = false;
         }
 
+        public Guid Guid => Guid.NewGuid();
         public string Name { get; }
         public int Energy { get; }
         public int Carbohydrate { get; }
