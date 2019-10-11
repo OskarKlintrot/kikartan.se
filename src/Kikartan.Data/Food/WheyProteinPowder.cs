@@ -16,6 +16,7 @@ namespace Kikartan.Data.Food
             SaturatedFat = 4;
             Fiber = 0;
             Protein = 74;
+            Vegan = false;
         }
 
         public string Name { get; }
@@ -25,5 +26,6 @@ namespace Kikartan.Data.Food
         public int SaturatedFat { get; }
         public int Fiber { get; }
         public int Protein { get; }
+        public bool Vegan { get; }
     }
 }
