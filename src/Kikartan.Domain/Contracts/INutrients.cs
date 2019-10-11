@@ -15,5 +15,8 @@ namespace Kikartan.Domain.Contracts
         int Fiber { get; }
         int Protein { get; }
         bool Vegan { get; }
+
+        int Max { get; }
+        int Step { get; }
     }
 }

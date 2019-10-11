@@ -14,13 +14,25 @@
 <br />
 <input type="range" id="ppg" name="ppg" min="8" max="30" step="1" @bind-value="@proteinRatioDiscrete" @bind-value:event="oninput" />
 <br />
-@foreach (var food in FoodNutrients)
+@foreach (var food in FoodNutrients.OrderBy(x => x.Protein))
 {
-<p>Choose amount of @Foods[FoodNutrients.Single().Name]:</p>
-<br />
+    if (AmountOfFoods.ContainsKey(food.Guid))
+    {
+        <label for="@food.Guid">Choose amount of @Foods[food.Name] (@AmountOfFoods[@food.Guid] g of which @((AmountOfFoods[food.Guid] * food.Protein) / 100) g @NutrientFacts.Protein.ToLower()):</label>
+        <br />
+        <input type="range" id="@food.Guid" name="@food.Guid" min="0" max="@food.Max" step="@food.Step" @bind-value="@AmountOfFoods[@food.Guid]" @bind-value:event="oninput" />
+        <br />
+    }
 }
-@foreach (var food in AmountOfFoods)
-{
-<p>@food.Key</p>
+
 <br />
-}
+<h2>
+    @NutrientFacts.Nutrients
+</h2>
+<p>@NutrientFacts.Energy: @GetNutrients().Energy</p>
+<p>@NutrientFacts.Protein: @GetNutrients().Protein</p>
+<p>@NutrientFacts.Carbohydrate: @GetNutrients().Carbohydrate</p>
+<p>@NutrientFacts.Fat: @GetNutrients().Fat</p>
+<p>@NutrientFacts.SaturatedFat: @GetNutrients().SaturatedFat</p>
+<p>@NutrientFacts.Fiber: @GetNutrients().Fiber</p>
+<p>@NutrientFacts.Vegan: @GetNutrients().Vegan</p>

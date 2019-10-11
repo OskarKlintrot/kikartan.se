@@ -1,7 +1,5 @@
-﻿using Kikartan.Domain.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using Kikartan.Domain.Contracts;
 
 namespace Kikartan.Data.Food
 {
@@ -17,9 +15,13 @@ namespace Kikartan.Data.Food
             Fiber = 0;
             Protein = 74;
             Vegan = false;
+
+            Guid = Guid.NewGuid();
+            Max = 150;
+            Step = 5;
         }
 
-        public Guid Guid => Guid.NewGuid();
+        public Guid Guid { get; }
         public string Name { get; }
         public int Energy { get; }
         public int Carbohydrate { get; }
@@ -28,5 +30,8 @@ namespace Kikartan.Data.Food
         public int Fiber { get; }
         public int Protein { get; }
         public bool Vegan { get; }
+
+        public int Max { get; }
+        public int Step { get; }
     }
 }

@@ -27,5 +27,8 @@ namespace Kikartan.BlazorApp.I18nText
 
         /// <summary>"Saturated Fat"</summary>
         public string SaturatedFat;
+
+        /// <summary>"Vegan"</summary>
+        public string Vegan;
     }
 }
