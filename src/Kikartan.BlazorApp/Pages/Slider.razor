@@ -1,17 +1,16 @@
-﻿@page "/slider"
-@inject Toolbelt.Blazor.I18nText.I18nText I18nText
-@inject IEnumerable<Kikartan.Domain.Contracts.INutrients> FoodNutrients
+﻿@inherits SliderBase
+@page "/slider"
 
 <h1>Slider</h1>
 
-<p>Current value: @protein() gram per day</p>
+<p>Current value: @Protein() gram per day</p>
 
 <label for="tbw">@Labels.TargetBodyweight (@(targetBw) kg):</label>
 <br />
 <input type="text" id="tbw" name="tbw" required minlength="2" maxlength="3" size="4" @bind-value="@targetBw" @bind-value:event="oninput" />
 <br />
 <br />
-<label for="ppg">Protein per gram (@(proteinRatio) g):</label>
+<label for="ppg">Protein per gram (@(ProteinRatio) g):</label>
 <br />
 <input type="range" id="ppg" name="ppg" min="8" max="30" step="1" @bind-value="@proteinRatioDiscrete" @bind-value:event="oninput" />
 <br />
@@ -20,25 +19,8 @@
 <p>Choose amount of @Foods[FoodNutrients.Single().Name]:</p>
 <br />
 }
-
-
-@code {
-    int proteinRatioDiscrete = 16;
-    decimal proteinRatio => (proteinRatioDiscrete / 10M);
-    int targetBw = 75;
-    I18nText.NutrientFacts NutrientFacts = new I18nText.NutrientFacts();
-    I18nText.Labels Labels = new I18nText.Labels();
-    I18nText.Foods Foods = new I18nText.Foods();
-
-    decimal protein()
-    {
-        return proteinRatio * targetBw;
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        NutrientFacts = await I18nText.GetTextTableAsync<I18nText.NutrientFacts>(this);
-        Labels = await I18nText.GetTextTableAsync<I18nText.Labels>(this);
-        Foods = await I18nText.GetTextTableAsync<I18nText.Foods>(this);
-    }
+@foreach (var food in AmountOfFoods)
+{
+<p>@food.Key</p>
+<br />
 }
