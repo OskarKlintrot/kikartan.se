@@ -27,8 +27,8 @@ namespace Kikartan.BlazorApp.Pages
             return ProteinRatio * targetBw;
         }
 
-        protected IReadOnlyCollection<IFood> Foods => NutrionCalculatorService.GetFoods();
-        protected INutrients NutrientsSummerized => NutrionCalculatorService.GetNutrientsSummery(AmountOfFoods);
+        protected IReadOnlyCollection<IFood> GetFoods() => NutrionCalculatorService.GetFoods();
+        protected INutrients SummerizeNutrients() => NutrionCalculatorService.GetNutrientsSummery(AmountOfFoods);
 
         protected override async Task OnInitializedAsync()
         {
@@ -36,7 +36,7 @@ namespace Kikartan.BlazorApp.Pages
             I18Labels = await I18nText.GetTextTableAsync<I18nText.Labels>(this);
             I18Foods = await I18nText.GetTextTableAsync<I18nText.Foods>(this);
 
-            foreach (var food in Foods)
+            foreach (var food in GetFoods())
             {
                 AmountOfFoods.Add(food.Guid, 0);
             }

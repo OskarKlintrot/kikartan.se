@@ -24,25 +24,26 @@ namespace Kikartan.Domain
         {
             var foodNutrients = _food
                 .Where(x => amountOfFoods.ContainsKey(x.Guid))
+                .Select(x => x.Nutrients.For(amountOfFoods[x.Guid]))
                 .ToArray();
 
             var energy = foodNutrients
-                .Aggregate(0, (x, y) => x + (y.Nutrients.Energy * amountOfFoods[y.Guid]) / 100);
+                .Aggregate(0, (x, y) => x + y.Energy);
 
             var carbohydrate = foodNutrients
-                .Aggregate(0, (x, y) => x + (y.Nutrients.Carbohydrate * amountOfFoods[y.Guid]) / 100);
+                .Aggregate(0, (x, y) => x + y.Carbohydrate);
 
             var fat = foodNutrients
-                .Aggregate(0, (x, y) => x + (y.Nutrients.Fat * amountOfFoods[y.Guid]) / 100);
+                .Aggregate(0, (x, y) => x + y.Fat);
 
             var saturatedFat = foodNutrients
-                .Aggregate(0, (x, y) => x + (y.Nutrients.SaturatedFat * amountOfFoods[y.Guid]) / 100);
+                .Aggregate(0, (x, y) => x + y.SaturatedFat);
 
             var fiber = foodNutrients
-                .Aggregate(0, (x, y) => x + (y.Nutrients.Fiber * amountOfFoods[y.Guid]) / 100);
+                .Aggregate(0, (x, y) => x + y.Fiber);
 
             var protein = foodNutrients
-                .Aggregate(0, (x, y) => x + (y.Nutrients.Protein * amountOfFoods[y.Guid]) / 100);
+                .Aggregate(0, (x, y) => x + y.Protein);
 
             var vegan = _food
                 .Where(x => amountOfFoods.TryGetValue(x.Guid, out var value) && value > 0)

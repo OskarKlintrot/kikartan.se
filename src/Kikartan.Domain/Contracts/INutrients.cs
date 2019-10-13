@@ -2,6 +2,8 @@
 {
     public interface INutrients
     {
+        INutrients For(int gram);
+
         int Energy { get; }
         int Carbohydrate { get; }
         int Fat { get; }

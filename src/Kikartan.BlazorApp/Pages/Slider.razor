@@ -14,14 +14,60 @@
 <br />
 <input type="range" id="ppg" name="ppg" min="8" max="30" step="1" @bind-value="@proteinRatioDiscrete" @bind-value:event="oninput" />
 <br />
-@foreach (var food in Foods.OrderBy(x => x.Nutrients.Protein))
+@foreach (var food in GetFoods().OrderBy(x => x.Nutrients.Protein))
 {
     if (AmountOfFoods.ContainsKey(food.Guid))
     {
+        var nutrients = food.Nutrients.For(AmountOfFoods[food.Guid]);
+
         <label for="@food.Guid">Choose amount of @I18Foods[food.Name] (@AmountOfFoods[@food.Guid] g of which @((AmountOfFoods[food.Guid] * food.Nutrients.Protein) / 100) g @I18NutrientFacts.Protein.ToLower()):</label>
         <br />
         <input type="range" id="@food.Guid" name="@food.Guid" min="0" max="@food.Max" step="@food.Step" @bind-value="@AmountOfFoods[@food.Guid]" @bind-value:event="oninput" />
         <br />
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">@I18NutrientFacts.Nutrients</th>
+                    <th>@AmountOfFoods[food.Guid] g</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@I18NutrientFacts.Energy</td>
+                    <td>@food.Nutrients.Energy</td>
+                    <td>@(nutrients.Energy)</td>
+                </tr>
+                <tr>
+                    <td>@I18NutrientFacts.Protein</td>
+                    <td>@food.Nutrients.Protein</td>
+                    <td>@(nutrients.Protein)</td>
+                </tr>
+                <tr>
+                    <td>@I18NutrientFacts.Carbohydrate</td>
+                    <td>@food.Nutrients.Carbohydrate</td>
+                    <td>@(nutrients.Carbohydrate)</td>
+                </tr>
+                <tr>
+                    <td>@I18NutrientFacts.Fat</td>
+                    <td>@food.Nutrients.Fat</td>
+                    <td>@(nutrients.Fat)</td>
+                </tr>
+                <tr>
+                    <td>@I18NutrientFacts.SaturatedFat</td>
+                    <td>@food.Nutrients.SaturatedFat</td>
+                    <td>@(nutrients.SaturatedFat)</td>
+                </tr>
+                <tr>
+                    <td>@I18NutrientFacts.Fiber</td>
+                    <td>@food.Nutrients.Fiber</td>
+                    <td>@(nutrients.Fiber)</td>
+                </tr>
+                <tr>
+                    <td>@I18NutrientFacts.Vegan</td>
+                    <td>@(nutrients.Vegan)</td>
+                </tr>
+            </tbody>
+        </table>
     }
 }
 
@@ -29,10 +75,36 @@
 <h2>
     @I18NutrientFacts.Nutrients
 </h2>
-<p>@I18NutrientFacts.Energy: @NutrientsSummerized.Energy</p>
-<p>@I18NutrientFacts.Protein: @NutrientsSummerized.Protein</p>
-<p>@I18NutrientFacts.Carbohydrate: @NutrientsSummerized.Carbohydrate</p>
-<p>@I18NutrientFacts.Fat: @NutrientsSummerized.Fat</p>
-<p>@I18NutrientFacts.SaturatedFat: @NutrientsSummerized.SaturatedFat</p>
-<p>@I18NutrientFacts.Fiber: @NutrientsSummerized.Fiber</p>
-<p>@I18NutrientFacts.Vegan: @NutrientsSummerized.Vegan</p>
+@{ var nutrientsSummerized = SummerizeNutrients(); }
+<table>
+    <tbody>
+        <tr>
+            <td>@I18NutrientFacts.Energy</td>
+            <td>@nutrientsSummerized.Energy</td>
+        </tr>
+        <tr>
+            <td>@I18NutrientFacts.Protein</td>
+            <td>@nutrientsSummerized.Protein</td>
+        </tr>
+        <tr>
+            <td>@I18NutrientFacts.Carbohydrate</td>
+            <td>@nutrientsSummerized.Carbohydrate</td>
+        </tr>
+        <tr>
+            <td>@I18NutrientFacts.Fat</td>
+            <td>@nutrientsSummerized.Fat</td>
+        </tr>
+        <tr>
+            <td>@I18NutrientFacts.SaturatedFat</td>
+            <td>@nutrientsSummerized.SaturatedFat</td>
+        </tr>
+        <tr>
+            <td>@I18NutrientFacts.Fiber</td>
+            <td>@nutrientsSummerized.Fiber</td>
+        </tr>
+        <tr>
+            <td>@I18NutrientFacts.Vegan</td>
+            <td>@nutrientsSummerized.Vegan</td>
+        </tr>
+    </tbody>
+</table>
