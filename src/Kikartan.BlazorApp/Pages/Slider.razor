@@ -5,7 +5,7 @@
 
 <p>Current value: @Protein() gram per day</p>
 
-<label for="tbw">@Labels.TargetBodyweight (@(targetBw) kg):</label>
+<label for="tbw">@I18Labels.TargetBodyweight (@(targetBw) kg):</label>
 <br />
 <input type="text" id="tbw" name="tbw" required minlength="2" maxlength="3" size="4" @bind-value="@targetBw" @bind-value:event="oninput" />
 <br />
@@ -14,11 +14,11 @@
 <br />
 <input type="range" id="ppg" name="ppg" min="8" max="30" step="1" @bind-value="@proteinRatioDiscrete" @bind-value:event="oninput" />
 <br />
-@foreach (var food in FoodNutrients.OrderBy(x => x.Protein))
+@foreach (var food in Foods.OrderBy(x => x.Nutrients.Protein))
 {
     if (AmountOfFoods.ContainsKey(food.Guid))
     {
-        <label for="@food.Guid">Choose amount of @Foods[food.Name] (@AmountOfFoods[@food.Guid] g of which @((AmountOfFoods[food.Guid] * food.Protein) / 100) g @NutrientFacts.Protein.ToLower()):</label>
+        <label for="@food.Guid">Choose amount of @I18Foods[food.Name] (@AmountOfFoods[@food.Guid] g of which @((AmountOfFoods[food.Guid] * food.Nutrients.Protein) / 100) g @I18NutrientFacts.Protein.ToLower()):</label>
         <br />
         <input type="range" id="@food.Guid" name="@food.Guid" min="0" max="@food.Max" step="@food.Step" @bind-value="@AmountOfFoods[@food.Guid]" @bind-value:event="oninput" />
         <br />
@@ -27,12 +27,12 @@
 
 <br />
 <h2>
-    @NutrientFacts.Nutrients
+    @I18NutrientFacts.Nutrients
 </h2>
-<p>@NutrientFacts.Energy: @GetNutrients().Energy</p>
-<p>@NutrientFacts.Protein: @GetNutrients().Protein</p>
-<p>@NutrientFacts.Carbohydrate: @GetNutrients().Carbohydrate</p>
-<p>@NutrientFacts.Fat: @GetNutrients().Fat</p>
-<p>@NutrientFacts.SaturatedFat: @GetNutrients().SaturatedFat</p>
-<p>@NutrientFacts.Fiber: @GetNutrients().Fiber</p>
-<p>@NutrientFacts.Vegan: @GetNutrients().Vegan</p>
+<p>@I18NutrientFacts.Energy: @NutrientsSummerized.Energy</p>
+<p>@I18NutrientFacts.Protein: @NutrientsSummerized.Protein</p>
+<p>@I18NutrientFacts.Carbohydrate: @NutrientsSummerized.Carbohydrate</p>
+<p>@I18NutrientFacts.Fat: @NutrientsSummerized.Fat</p>
+<p>@I18NutrientFacts.SaturatedFat: @NutrientsSummerized.SaturatedFat</p>
+<p>@I18NutrientFacts.Fiber: @NutrientsSummerized.Fiber</p>
+<p>@I18NutrientFacts.Vegan: @NutrientsSummerized.Vegan</p>

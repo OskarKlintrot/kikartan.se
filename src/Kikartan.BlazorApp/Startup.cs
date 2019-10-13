@@ -1,4 +1,5 @@
 using Kikartan.Data.Food;
+using Kikartan.Domain;
 using Kikartan.Domain.Contracts;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,8 @@ namespace Kikartan.BlazorApp
         {
             services.AddI18nText<Startup>();
 
+            services.AddSingleton<INutrionCalculatorService, NutrionCalculatorService>();
+
             AddFoods(services);
         }
 
@@ -22,7 +25,7 @@ namespace Kikartan.BlazorApp
 
         private void AddFoods(IServiceCollection services)
         {
-            services.AddSingleton<INutrients, WheyProteinPowder>();
+            services.AddSingleton<IFood, WheyProteinPowder>();
         }
     }
 }
