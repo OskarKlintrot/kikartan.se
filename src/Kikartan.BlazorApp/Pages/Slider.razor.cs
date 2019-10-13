@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Kikartan.Application.Services.Contracts;
 using Kikartan.Domain.Contracts;
 using Microsoft.AspNetCore.Components;
 
@@ -19,16 +20,18 @@ namespace Kikartan.BlazorApp.Pages
 
         protected readonly IDictionary<Guid, int> AmountOfFoods = new Dictionary<Guid, int>();
 
+#pragma warning disable RCS1170 // Use read-only auto-implemented property.
         [Inject] protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; private set; }
-        [Inject] protected INutrionCalculatorService NutrionCalculatorService { get; private set; }
+        [Inject] protected INutritionCalculatorService NutritionCalculatorService { get; private set; }
+#pragma warning restore RCS1170 // Use read-only auto-implemented property.
 
         protected decimal Protein()
         {
             return ProteinRatio * targetBw;
         }
 
-        protected IReadOnlyCollection<IFood> GetFoods() => NutrionCalculatorService.GetFoods();
-        protected INutrients SummerizeNutrients() => NutrionCalculatorService.GetNutrientsSummery(AmountOfFoods);
+        protected IReadOnlyCollection<IFood> GetFoods() => NutritionCalculatorService.GetFoods();
+        protected INutrients SummerizeNutrients() => NutritionCalculatorService.GetNutrientsSummery(AmountOfFoods);
 
         protected override async Task OnInitializedAsync()
         {

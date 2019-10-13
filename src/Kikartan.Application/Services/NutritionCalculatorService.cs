@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Kikartan.Application.Services.Contracts;
+using Kikartan.Domain;
 using Kikartan.Domain.Contracts;
 
-namespace Kikartan.Domain
+namespace Kikartan.Application.Services
 {
-    public class NutrionCalculatorService : INutrionCalculatorService
+    public class NutritionCalculatorService : INutritionCalculatorService
     {
         private readonly IEnumerable<IFood> _food;
 
-        public NutrionCalculatorService(IEnumerable<IFood> foodNutrients)
+        public NutritionCalculatorService(IEnumerable<IFood> foodNutrients)
         {
             _food = foodNutrients;
         }

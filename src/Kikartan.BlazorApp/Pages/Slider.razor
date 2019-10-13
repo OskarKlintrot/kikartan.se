@@ -27,7 +27,8 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="2">@I18NutrientFacts.Nutrients</th>
+                    <th>@I18NutrientFacts.Nutrients</th>
+                    <th>100 g</th>
                     <th>@AmountOfFoods[food.Guid] g</th>
                 </tr>
             </thead>
@@ -77,6 +78,19 @@
 </h2>
 @{ var nutrientsSummerized = SummerizeNutrients(); }
 <table>
+    <thead>
+        <tr>
+            <th></th>
+            @if (AmountOfFoods.Count > 0)
+            {
+                <th>@(AmountOfFoods.Select(x => x.Value).Aggregate((x, y) => x + y)) g</th>
+            }
+            else
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
     <tbody>
         <tr>
             <td>@I18NutrientFacts.Energy</td>
