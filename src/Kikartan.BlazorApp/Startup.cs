@@ -1,5 +1,5 @@
-using Kikartan.Application.Services;
-using Kikartan.Application.Services.Contracts;
+using Kikartan.Application.Queries;
+using Kikartan.Application.Queries.Contracts;
 using Kikartan.Domain.Contracts;
 using Kikartan.Infrastructure;
 using Microsoft.AspNetCore.Components.Builder;
@@ -16,7 +16,7 @@ namespace Kikartan.BlazorApp
 
             services
                 .AddSingleton<IFoodRepository, FoodRepository>()
-                .AddSingleton<INutritionCalculatorService, NutritionCalculatorService>();
+                .AddSingleton<INutritionQueries, NutritionQueries>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

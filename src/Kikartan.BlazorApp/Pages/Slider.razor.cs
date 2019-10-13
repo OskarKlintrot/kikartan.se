@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Kikartan.Application.Services.Contracts;
+using Kikartan.Application.Queries.Contracts;
 using Kikartan.Domain;
 using Microsoft.AspNetCore.Components;
 
@@ -22,7 +22,7 @@ namespace Kikartan.BlazorApp.Pages
 
 #pragma warning disable RCS1170 // Use read-only auto-implemented property.
         [Inject] protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; private set; }
-        [Inject] protected INutritionCalculatorService NutritionCalculatorService { get; private set; }
+        [Inject] protected INutritionQueries NutritionCalculatorService { get; private set; }
 #pragma warning restore RCS1170 // Use read-only auto-implemented property.
 
         protected decimal Protein()

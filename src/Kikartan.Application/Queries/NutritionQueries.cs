@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Kikartan.Application.Services.Contracts;
+using Kikartan.Application.Queries.Contracts;
 using Kikartan.Domain;
 using Kikartan.Domain.Contracts;
 
-namespace Kikartan.Application.Services
+namespace Kikartan.Application.Queries
 {
-    public class NutritionCalculatorService : INutritionCalculatorService
+    public class NutritionQueries : INutritionQueries
     {
-        private readonly IEnumerable<Food> _food;
+        private readonly Food[] _foods;
 
-        public NutritionCalculatorService(IFoodRepository foodRepository)
+        public NutritionQueries(IFoodRepository foodRepository)
         {
-            _food = foodRepository.GetFoods().ToArray();
+            // TODO: Not sure why I have to retrive these immediately here
+            _foods = foodRepository
+                .GetFoods()
+                .ToArray();
         }
 
         public IReadOnlyCollection<Food> GetFoods()
         {
-            return new ReadOnlyCollection<Food>(_food.ToList());
+            return new ReadOnlyCollection<Food>(_foods);
         }
 
         public Nutrients GetNutrientsSummery(IDictionary<Guid, int> amountOfFoods)
         {
-            var foodNutrients = _food
+            var foodNutrients = _foods
                 .Where(x => amountOfFoods.ContainsKey(x.Guid))
                 .Select(x => x.Nutrients.ChangeAmount(amountOfFoods[x.Guid]))
                 .ToArray();
@@ -50,7 +53,7 @@ namespace Kikartan.Application.Services
             var amount = foodNutrients
                 .Aggregate(0, (x, y) => x + y.AmountInGram);
 
-            var vegan = _food
+            var vegan = _foods
                 .Where(x => amountOfFoods.TryGetValue(x.Guid, out var value) && value > 0)
                 .All(x => x.Nutrients.Vegan);
 
