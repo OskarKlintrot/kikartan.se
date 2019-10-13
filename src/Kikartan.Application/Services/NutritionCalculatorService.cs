@@ -10,23 +10,23 @@ namespace Kikartan.Application.Services
 {
     public class NutritionCalculatorService : INutritionCalculatorService
     {
-        private readonly IEnumerable<IFood> _food;
+        private readonly IEnumerable<Food> _food;
 
-        public NutritionCalculatorService(IEnumerable<IFood> foodNutrients)
+        public NutritionCalculatorService(IFoodRepository foodRepository)
         {
-            _food = foodNutrients;
+            _food = foodRepository.GetFoods().ToArray();
         }
 
-        public IReadOnlyCollection<IFood> GetFoods()
+        public IReadOnlyCollection<Food> GetFoods()
         {
-            return new ReadOnlyCollection<IFood>(_food.ToList());
+            return new ReadOnlyCollection<Food>(_food.ToList());
         }
 
-        public INutrients GetNutrientsSummery(IDictionary<Guid, int> amountOfFoods)
+        public Nutrients GetNutrientsSummery(IDictionary<Guid, int> amountOfFoods)
         {
             var foodNutrients = _food
                 .Where(x => amountOfFoods.ContainsKey(x.Guid))
-                .Select(x => x.Nutrients.For(amountOfFoods[x.Guid]))
+                .Select(x => x.Nutrients.ChangeAmount(amountOfFoods[x.Guid]))
                 .ToArray();
 
             var energy = foodNutrients
@@ -47,11 +47,15 @@ namespace Kikartan.Application.Services
             var protein = foodNutrients
                 .Aggregate(0, (x, y) => x + y.Protein);
 
+            var amount = foodNutrients
+                .Aggregate(0, (x, y) => x + y.AmountInGram);
+
             var vegan = _food
                 .Where(x => amountOfFoods.TryGetValue(x.Guid, out var value) && value > 0)
                 .All(x => x.Nutrients.Vegan);
 
             return new Nutrients(
+                amount,
                 energy,
                 carbohydrate,
                 fat,

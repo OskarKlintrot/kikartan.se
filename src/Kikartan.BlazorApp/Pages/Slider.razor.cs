@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kikartan.Application.Services.Contracts;
-using Kikartan.Domain.Contracts;
+using Kikartan.Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace Kikartan.BlazorApp.Pages
@@ -30,8 +30,8 @@ namespace Kikartan.BlazorApp.Pages
             return ProteinRatio * targetBw;
         }
 
-        protected IReadOnlyCollection<IFood> GetFoods() => NutritionCalculatorService.GetFoods();
-        protected INutrients SummerizeNutrients() => NutritionCalculatorService.GetNutrientsSummery(AmountOfFoods);
+        protected IReadOnlyCollection<Food> GetFoods() => NutritionCalculatorService.GetFoods();
+        protected Nutrients SummerizeNutrients() => NutritionCalculatorService.GetNutrientsSummery(AmountOfFoods);
 
         protected override async Task OnInitializedAsync()
         {

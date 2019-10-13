@@ -45,8 +45,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kikartan.Application\Kikartan.Application.csproj" />
-    <ProjectReference Include="..\Kikartan.Data\Kikartan.Data.csproj" />
     <ProjectReference Include="..\Kikartan.Domain\Kikartan.Domain.csproj" />
+    <ProjectReference Include="..\Kikartan.Infrastructure\Kikartan.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

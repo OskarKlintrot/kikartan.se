@@ -1,9 +1,10 @@
-﻿using Kikartan.Domain.Contracts;
+﻿using System;
 
 namespace Kikartan.Domain
 {
-    public class Nutrients : INutrients
+    public class Nutrients
     {
+        public int AmountInGram { get; }
         public int Energy { get; }
         public int Carbohydrate { get; }
         public int Fat { get; }
@@ -13,6 +14,7 @@ namespace Kikartan.Domain
         public bool Vegan { get; }
 
         public Nutrients(
+            int amount,
             int energy,
             int carbohydrate,
             int fat,
@@ -21,6 +23,7 @@ namespace Kikartan.Domain
             int protein,
             bool vegan)
         {
+            AmountInGram = amount;
             Energy = energy;
             Carbohydrate = carbohydrate;
             Fat = fat;
@@ -30,11 +33,12 @@ namespace Kikartan.Domain
             Vegan = vegan;
         }
 
-        public INutrients For(int gram)
+        public Nutrients ChangeAmount(int gram)
         {
-            var factor = gram / 100M;
+            var factor = gram / Convert.ToDecimal(AmountInGram);
 
             return new Nutrients(
+                gram,
                 decimal.ToInt32(Energy * factor),
                 decimal.ToInt32(Carbohydrate * factor),
                 decimal.ToInt32(Fat * factor),

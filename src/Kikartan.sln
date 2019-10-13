@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kikartan.BlazorApp", "Kikar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kikartan.Domain", "Kikartan.Domain\Kikartan.Domain.csproj", "{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kikartan.Data", "Kikartan.Data\Kikartan.Data.csproj", "{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kikartan.Application", "Kikartan.Application\Kikartan.Application.csproj", "{4BC7C60B-3FDD-44CE-A85F-030AEB4A1BAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kikartan.Infrastructure", "Kikartan.Infrastructure\Kikartan.Infrastructure.csproj", "{DFAD6EEB-3A2B-4602-AE9A-979F3F15111D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DE587E9-431B-4D6F-8AB8-08F8BB2911A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8123BD31-BC57-43BB-B4FF-11B9A6D9C5C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BC7C60B-3FDD-44CE-A85F-030AEB4A1BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BC7C60B-3FDD-44CE-A85F-030AEB4A1BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BC7C60B-3FDD-44CE-A85F-030AEB4A1BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BC7C60B-3FDD-44CE-A85F-030AEB4A1BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFAD6EEB-3A2B-4602-AE9A-979F3F15111D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFAD6EEB-3A2B-4602-AE9A-979F3F15111D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFAD6EEB-3A2B-4602-AE9A-979F3F15111D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFAD6EEB-3A2B-4602-AE9A-979F3F15111D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
