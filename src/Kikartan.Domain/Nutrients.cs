@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kikartan.Domain
+﻿namespace Kikartan.Domain
 {
     public class Nutrients
     {
@@ -16,36 +14,21 @@ namespace Kikartan.Domain
         public Nutrients(
             int amount,
             int energy,
-            decimal carbohydrate,
             decimal fat,
             decimal saturatedFat,
+            decimal carbohydrate,
             decimal fiber,
             decimal protein,
             bool vegan)
         {
             AmountInGram = amount;
             Energy = energy;
-            Carbohydrate = carbohydrate;
             Fat = fat;
             SaturatedFat = saturatedFat;
+            Carbohydrate = carbohydrate;
             Fiber = fiber;
             Protein = protein;
             Vegan = vegan;
-        }
-
-        public Nutrients ChangeAmount(int gram)
-        {
-            var factor = gram / Convert.ToDecimal(AmountInGram);
-
-            return new Nutrients(
-                gram,
-                decimal.ToInt32(Energy * factor),
-                decimal.ToInt32(Carbohydrate * factor),
-                Fat * factor,
-                SaturatedFat * factor,
-                Fiber * factor,
-                Protein * factor,
-                Vegan);
         }
     }
 }

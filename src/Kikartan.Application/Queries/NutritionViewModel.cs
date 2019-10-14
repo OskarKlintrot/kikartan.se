@@ -41,18 +41,18 @@ namespace Kikartan.Application.Queries
         public Nutrients(
             int amount,
             int energy,
-            decimal carbohydrate,
             decimal fat,
             decimal saturatedFat,
+            decimal carbohydrate,
             decimal fiber,
             decimal protein,
             bool vegan)
         {
             AmountInGram = amount;
             Energy = energy;
-            Carbohydrate = carbohydrate;
             Fat = fat;
             SaturatedFat = saturatedFat;
+            Carbohydrate = carbohydrate;
             Fiber = fiber;
             Protein = protein;
             Vegan = vegan;
@@ -63,14 +63,14 @@ namespace Kikartan.Application.Queries
             var factor = gram / Convert.ToDecimal(AmountInGram);
 
             return new Nutrients(
-                gram,
-                decimal.ToInt32(Energy * factor),
-                Carbohydrate * factor,
-                Fat * factor,
-                SaturatedFat * factor,
-                Fiber * factor,
-                Protein * factor,
-                Vegan);
+                amount: gram,
+                energy: decimal.ToInt32(Energy * factor),
+                fat: Fat * factor,
+                saturatedFat: SaturatedFat * factor,
+                carbohydrate: Carbohydrate * factor,
+                fiber: Fiber * factor,
+                protein: Protein * factor,
+                vegan: Vegan);
         }
     }
 

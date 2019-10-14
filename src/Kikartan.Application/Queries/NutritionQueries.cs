@@ -22,14 +22,14 @@ namespace Kikartan.Application.Queries
                     x.Max,
                     x.Step,
                     new Nutrients(
-                        x.Nutrients.AmountInGram,
-                        x.Nutrients.Energy,
-                        x.Nutrients.Carbohydrate,
-                        x.Nutrients.Fat,
-                        x.Nutrients.SaturatedFat,
-                        x.Nutrients.Fiber,
-                        x.Nutrients.Protein,
-                        x.Nutrients.Vegan)))
+                        amount: x.Nutrients.AmountInGram,
+                        energy: x.Nutrients.Energy,
+                        fat: x.Nutrients.Fat,
+                        saturatedFat: x.Nutrients.SaturatedFat,
+                        carbohydrate: x.Nutrients.Carbohydrate,
+                        fiber: x.Nutrients.Fiber,
+                        protein: x.Nutrients.Protein,
+                        vegan: x.Nutrients.Vegan)))
                 .ToArray();
         }
 
@@ -71,14 +71,14 @@ namespace Kikartan.Application.Queries
                 .All(x => x.Nutrients.Vegan);
 
             return new Nutrients(
-                amount,
-                energy,
-                carbohydrate,
-                fat,
-                saturatedFat,
-                fiber,
-                protein,
-                vegan);
+                amount: amount,
+                energy: energy,
+                fat: fat,
+                saturatedFat: saturatedFat,
+                carbohydrate: carbohydrate,
+                fiber: fiber,
+                protein: protein,
+                vegan: vegan);
         }
     }
 }
