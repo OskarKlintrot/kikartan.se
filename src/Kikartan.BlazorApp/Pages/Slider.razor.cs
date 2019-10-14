@@ -9,7 +9,7 @@ namespace Kikartan.BlazorApp.Pages
 {
     public class SliderBase : ComponentBase
     {
-        protected int proteinRatioDiscrete = 16;
+        protected int proteinRatioDiscrete = 18;
         protected int targetBw = 75;
 
         protected decimal ProteinRatio => proteinRatioDiscrete / 10M;
