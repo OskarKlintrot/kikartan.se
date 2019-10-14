@@ -5,20 +5,21 @@ namespace Kikartan.Application.Queries
     public class Food
     {
         public Food(
+            Guid id,
             string name,
             int max,
             int step,
             Nutrients nutrients)
         {
             Name = name;
-            Guid = Guid.NewGuid();
+            Id = id;
             Max = max;
             Step = step;
 
             Nutrients = nutrients;
         }
 
-        public Guid Guid { get; }
+        public Guid Id { get; }
         public string Name { get; }
         public int Max { get; }
         public int Step { get; }
@@ -30,21 +31,21 @@ namespace Kikartan.Application.Queries
     {
         public int AmountInGram { get; }
         public int Energy { get; }
-        public int Carbohydrate { get; }
-        public int Fat { get; }
-        public int SaturatedFat { get; }
-        public int Fiber { get; }
-        public int Protein { get; }
+        public decimal Carbohydrate { get; }
+        public decimal Fat { get; }
+        public decimal SaturatedFat { get; }
+        public decimal Fiber { get; }
+        public decimal Protein { get; }
         public bool Vegan { get; }
 
         public Nutrients(
             int amount,
             int energy,
-            int carbohydrate,
-            int fat,
-            int saturatedFat,
-            int fiber,
-            int protein,
+            decimal carbohydrate,
+            decimal fat,
+            decimal saturatedFat,
+            decimal fiber,
+            decimal protein,
             bool vegan)
         {
             AmountInGram = amount;
@@ -64,11 +65,11 @@ namespace Kikartan.Application.Queries
             return new Nutrients(
                 gram,
                 decimal.ToInt32(Energy * factor),
-                decimal.ToInt32(Carbohydrate * factor),
-                decimal.ToInt32(Fat * factor),
-                decimal.ToInt32(SaturatedFat * factor),
-                decimal.ToInt32(Fiber * factor),
-                decimal.ToInt32(Protein * factor),
+                Carbohydrate * factor,
+                Fat * factor,
+                SaturatedFat * factor,
+                Fiber * factor,
+                Protein * factor,
                 Vegan);
         }
     }

@@ -41,7 +41,7 @@ namespace Kikartan.BlazorApp.Pages
 
             foreach (var food in GetFoods())
             {
-                AmountOfFoods.Add(food.Guid, 0);
+                AmountOfFoods.Add(food.Id, 0);
             }
         }
     }

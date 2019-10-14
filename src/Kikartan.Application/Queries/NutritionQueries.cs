@@ -17,6 +17,7 @@ namespace Kikartan.Application.Queries
             _foods = foodRepository
                 .GetFoods()
                 .Select(x => new Food(
+                    x.Id,
                     x.Name,
                     x.Max,
                     x.Step,
@@ -40,33 +41,33 @@ namespace Kikartan.Application.Queries
         public Nutrients GetNutrientsSummery(IDictionary<Guid, int> amountOfFoods)
         {
             var foodNutrients = _foods
-                .Where(x => amountOfFoods.ContainsKey(x.Guid))
-                .Select(x => x.Nutrients.ChangeAmount(amountOfFoods[x.Guid]))
+                .Where(x => amountOfFoods.ContainsKey(x.Id))
+                .Select(x => x.Nutrients.ChangeAmount(amountOfFoods[x.Id]))
                 .ToArray();
 
             var energy = foodNutrients
                 .Aggregate(0, (x, y) => x + y.Energy);
 
             var carbohydrate = foodNutrients
-                .Aggregate(0, (x, y) => x + y.Carbohydrate);
+                .Aggregate(0M, (x, y) => x + y.Carbohydrate);
 
             var fat = foodNutrients
-                .Aggregate(0, (x, y) => x + y.Fat);
+                .Aggregate(0M, (x, y) => x + y.Fat);
 
             var saturatedFat = foodNutrients
-                .Aggregate(0, (x, y) => x + y.SaturatedFat);
+                .Aggregate(0M, (x, y) => x + y.SaturatedFat);
 
             var fiber = foodNutrients
-                .Aggregate(0, (x, y) => x + y.Fiber);
+                .Aggregate(0M, (x, y) => x + y.Fiber);
 
             var protein = foodNutrients
-                .Aggregate(0, (x, y) => x + y.Protein);
+                .Aggregate(0M, (x, y) => x + y.Protein);
 
             var amount = foodNutrients
                 .Aggregate(0, (x, y) => x + y.AmountInGram);
 
             var vegan = _foods
-                .Where(x => amountOfFoods.TryGetValue(x.Guid, out var value) && value > 0)
+                .Where(x => amountOfFoods.TryGetValue(x.Id, out var value) && value > 0)
                 .All(x => x.Nutrients.Vegan);
 
             return new Nutrients(

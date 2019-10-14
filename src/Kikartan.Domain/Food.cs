@@ -5,20 +5,21 @@ namespace Kikartan.Domain
     public class Food
     {
         public Food(
+            Guid id,
             string name,
             int max,
             int step,
             Nutrients nutrients)
         {
             Name = name;
-            Guid = Guid.NewGuid();
+            Id = id;
             Max = max;
             Step = step;
 
             Nutrients = nutrients;
         }
 
-        public Guid Guid { get; }
+        public Guid Id { get; }
         public string Name { get; }
         public int Max { get; }
         public int Step { get; }

@@ -16,13 +16,13 @@
 <br />
 @foreach (var food in GetFoods().OrderBy(x => x.Nutrients.Protein))
 {
-    if (AmountOfFoods.ContainsKey(food.Guid))
+    if (AmountOfFoods.ContainsKey(food.Id))
     {
-        var nutrients = food.Nutrients.ChangeAmount(AmountOfFoods[food.Guid]);
+        var nutrients = food.Nutrients.ChangeAmount(AmountOfFoods[food.Id]);
 
-        <label for="@food.Guid">Choose amount of @I18Foods[food.Name] (@nutrients.AmountInGram g of which @(nutrients.Protein) g @I18NutrientFacts.Protein.ToLower()):</label>
+        <label for="@food.Id">Choose amount of @I18Foods[food.Name] (@nutrients.AmountInGram g of which @(nutrients.Protein) g @I18NutrientFacts.Protein.ToLower()):</label>
         <br />
-        <input type="range" id="@food.Guid" name="@food.Guid" min="0" max="@food.Max" step="@food.Step" @bind-value="@AmountOfFoods[@food.Guid]" @bind-value:event="oninput" />
+        <input type="range" id="@food.Id" name="@food.Id" min="0" max="@food.Max" step="@food.Step" @bind-value="@AmountOfFoods[@food.Id]" @bind-value:event="oninput" />
         <br />
         <table>
             <thead>
