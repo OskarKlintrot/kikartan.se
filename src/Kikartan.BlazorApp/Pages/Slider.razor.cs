@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Kikartan.Application.Queries;
 using Kikartan.Application.Queries.Contracts;
-using Kikartan.Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace Kikartan.BlazorApp.Pages
@@ -22,7 +22,7 @@ namespace Kikartan.BlazorApp.Pages
 
 #pragma warning disable RCS1170 // Use read-only auto-implemented property.
         [Inject] protected Toolbelt.Blazor.I18nText.I18nText I18nText { get; private set; }
-        [Inject] protected INutritionQueries NutritionCalculatorService { get; private set; }
+        [Inject] protected INutritionQueries NutritionQueries { get; private set; }
 #pragma warning restore RCS1170 // Use read-only auto-implemented property.
 
         protected decimal Protein()
@@ -30,8 +30,8 @@ namespace Kikartan.BlazorApp.Pages
             return ProteinRatio * targetBw;
         }
 
-        protected IReadOnlyCollection<Food> GetFoods() => NutritionCalculatorService.GetFoods();
-        protected Nutrients SummerizeNutrients() => NutritionCalculatorService.GetNutrientsSummery(AmountOfFoods);
+        protected IReadOnlyCollection<Food> GetFoods() => NutritionQueries.GetFoods();
+        protected Nutrients SummerizeNutrients() => NutritionQueries.GetNutrientsSummery(AmountOfFoods);
 
         protected override async Task OnInitializedAsync()
         {
