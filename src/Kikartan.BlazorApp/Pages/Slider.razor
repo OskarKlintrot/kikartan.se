@@ -14,7 +14,7 @@
 <br />
 <input type="range" id="ppg" name="ppg" min="8" max="30" step="1" @bind-value="@proteinRatioDiscrete" @bind-value:event="oninput" />
 <br />
-@foreach (var food in GetFoods().OrderBy(x => x.Nutrients.Protein))
+@foreach (var food in GetFoods().OrderByDescending(x => (x.Nutrients.Protein * 4) / x.Nutrients.Energy)) // Order by highest E% from protein
 {
     if (AmountOfFoods.ContainsKey(food.Id))
     {
